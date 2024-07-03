@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: HW-18_03
+      author: gasivelkay
+      labels: 2024.07.03
+      comment: "HW-18 - Шифровка паролей"
+      preConditions:
+        - onFail: HALT
+        - tableExists:
+            tableName: users
+      changes:
+        - sql:
+            sql: "CREATE EXTENSION pgcrypto"
+
+        - sql:
+            sql: "UPDATE users
+                  SET password = crypt(password, gen_salt('bf'))"
