@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Validated
 @RequestMapping(value = "mts-homework-sivelkaev-security")
 public interface ApplicationController {
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/admin")
     String helloAdmin();
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    //@PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping(value = "/user")
     String helloUser();
 }
