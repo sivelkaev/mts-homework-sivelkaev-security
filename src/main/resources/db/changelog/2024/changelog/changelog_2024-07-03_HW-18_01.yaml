@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: HW-18_01
+      author: gasivelkay
+      labels: 2024.07.03
+      comment: "HW-18 - Создание таблицы пользователей"
+      preConditions:
+        - onFail: HALT
+        - not:
+            - tableExists:
+                tableName: users
+        - not:
+            - tableExists:
+                tableName: authorities
+      changes:
+        - sql:
+            sql: "CREATE TABLE users (
+                    username varchar(50) NOT NULL,
+                    password varchar(500) NOT NULL,
+                    enabled boolean NOT NULL,
+                    priority int NOT NULL
+                  )"
+        - sql:
+            sql: "CREATE TABLE authorities (
+                    username varchar(50) NOT NULL,
+                    authority varchar(50) NOT NULL
+                  )"
+      rollback:
+        - dropTable:
+            tableName: users
+        - dropTable:
+            tableName: authorities

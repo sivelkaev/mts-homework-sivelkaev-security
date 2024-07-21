@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: HW-18_02
+      author: gasivelkay
+      labels: 2024.07.03
+      comment: "HW-18 - Заполнение таблицы пользователей"
+      preConditions:
+        - onFail: HALT
+        - tableExists:
+            tableName: users
+      changes:
+        - sql:
+            sql: "INSERT INTO users (username, password, enabled, priority)
+                  values('admin1', 'admin1pass', true, 1)"
+        - sql:
+            sql: "INSERT INTO users (username, password, enabled, priority)
+                  values('user1', 'user1pass', true, 2)"
+        - sql:
+            sql: "INSERT INTO authorities (username, authority)
+                  values('admin1', 'ROLE_ADMIN')"
+        - sql:
+            sql: "INSERT INTO authorities (username, authority)
+                  values('user1', 'ROLE_USER')"

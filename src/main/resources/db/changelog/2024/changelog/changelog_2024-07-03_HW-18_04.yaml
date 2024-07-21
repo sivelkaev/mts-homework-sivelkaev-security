@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: HW-18_04
+      author: gasivelkay
+      labels: 2024.07.03
+      comment: "HW-18 - Апдейт таблицы пользователей"
+      preConditions:
+        - onFail: HALT
+      changes:
+        - sql:
+            sql: "ALTER TABLE users
+                  ADD COLUMN role varchar(50)"
